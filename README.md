@@ -7,47 +7,95 @@
 ### Author: Aaron Ferris
 
 ### Links and Resources
-* [repo](http://xyz.com)
-* [travis](http://xyz.com)
-* [back-end](http://xyz.com) (when applicable)
-* [front-end](http://xyz.com) (when applicable)
-
+* [PR](https://github.com/codefellows-js-401d29-aaron-ferris/lab17/pull/1)  
+* [travis](https://www.travis-ci.com/codefellows-js-401d29-aaron-ferris/lab17) ![build](https://www.travis-ci.com/codefellows-js-401d29-aaron-ferris/lab17.svg?branch=master)  
+  
+  
 #### Documentation
-* [swagger](http://xyz.com) (API assignments only)
-* [jsdoc](http://xyz.com) (All assignments)
+* [jsdoc](https://github.com/codefellows-js-401d29-aaron-ferris/lab17/tree/submission/docs)  
 
 ### Modules
-#### `modulename.js`
+#### `app.js`
 ##### Exported Values and Methods
 
-###### `foo(thing) -> string`
-Usage Notes or examples
+###### `client.connect`
+ * Connects our socket to server 3001 in localhost
 
-###### `bar(array) -> array`
-Usage Notes or examples
+###### `saveFile`
+ * Connects our socket to server 3001 in localhost
+
+###### `convertBuffer`
+ * takes in buffer. 
+ * converts it to a string and uppercase
+
+###### `savedMsg`
+ * Takes in file
+ * writes to server file was saved
+ * terminates connection
+
+###### `throwErr`
+ * Takes in error
+ * logs the error
+ * terminates connection
+
+###### `alterFile`
+ * takes in file
+ * runs loadfile
+ * then runs convertbuffer
+ * then runs savefile
+ * then runs savedmsg
+ * if error runs throwErr
+
+###### `loadFile`
+ * takes promisified readFile
+ * makes it a function that is testable
+
+#### `logger.js`
+##### Exported Values and Methods
+
+###### `client.connect`
+ * Connects our socket to server 3001 in localhost
+
+###### `client.on`
+ * changes text into an event and a payload
+ * if event is an error, console.error the payload
+ * if event is a saved, console.log the payload
+
+#### `server.js`
+##### Exported Values and Methods
+
+###### `server.listen`
+ * listens on a port
+ * logs what port its up on
+
+ ###### `server.on`
+ * sets a id for a socket that oconnects.
+ *  when a socket is closed, deletes it
+ * if data is sent from socket its uses dispatch event
+
+ ###### `dispatchEvent`
+ * changes the buffer into a string
+ * splits string into event and payload
+ * writes to each socket the event and the payload
 
 ### Setup
-#### `.env` requirements
-* `PORT` - Port Number
-* `MONGODB_URI` - URL to the running mongo instance/db
+#### Requirements
+* run a npm i in the base folder
+
 
 #### Running the app
-* `npm start`
-* Endpoint: `/foo/bar/`
-  * Returns a JSON object with abc in it.
-* Endpoint: `/bing/zing/`
-  * Returns a JSON object with xyz in it.
+* in base folder run
+  * `nodemon`
+  * `nodemon logger.js`
+  * run command to execute
+  *  `node app.js _filename_`
+  *  example `node app.js ./files/test.txt`
   
 #### Tests
-* How do you run tests?
-* What assertions were made?
-* What assertions need to be / should be made?
+* Based on time, I didn't get to testing
 
 #### UML
-Link to an image of the UML for your application and response to events
+![UML](./files/uml.jpg)
 
 
 
-nodemon
-nodemon logger.js
-node app.js ./files/test.txt
